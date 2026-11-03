@@ -1,0 +1,18 @@
+name: Update GitHub Activity Log
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # 每 12 小時自動執行一次
+  workflow_dispatch: # 允許我們在 Actions 頁面手動點擊執行
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update Activity Log
+        uses: TheDanniCraft/activity-log@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
